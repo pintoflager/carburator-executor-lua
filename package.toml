@@ -1,0 +1,7 @@
+name = "lua"
+version = "0.1.0"
+collection = "Executor"
+platforms = ["Client", "Server"]
+
+retry_times = 3
+retry_interval = 10
