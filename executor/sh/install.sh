@@ -21,7 +21,8 @@ if ! carburator has program lua; then
     carburator print terminal warn \
         "Missing required program lua. Trying to install..."
 else
-    exit
+    carburator print terminal success "Lua found from the $role"
+    exit 0
 fi
 
 # TODO: Untested below
