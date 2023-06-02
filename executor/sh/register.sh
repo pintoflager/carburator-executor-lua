@@ -27,21 +27,21 @@ fi
 
 # TODO: Untested below
 if carburator has program apt; then
-    carburator sudo apt update
-    carburator sudo apt -y install lua5.4
+    apt-get -y update
+    apt-get -y install lua5.4
 
 elif carburator has program pacman; then
-    carburator sudo pacman update
-    carburator sudo pacman -Suy lua
+    pacman update
+    pacman -Suy lua
 
 elif carburator has program yum; then
-    carburator sudo yum makecache --refresh
-    carburator sudo yum install epel-release
-    carburator sudo yum install lua
+    yum makecache --refresh
+    yum install epel-release
+    yum install lua
 
 elif carburator has program dnf; then
-    carburator sudo dnf makecache --refresh
-    carburator sudo dnf -y install lua
+    dnf makecache --refresh
+    dnf -y install lua
 
 else
     carburator print terminal error \
