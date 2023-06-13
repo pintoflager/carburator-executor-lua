@@ -16,6 +16,15 @@ if [ "$role" = 'client' ]; then
     carburator print terminal info \
         "Executing register script on a client node"
 
+    carburator prompt yes-no \
+        "Should we try to install lua on your computer?" \
+            --yes-val "Yes try to install with a script" \
+            --no-val "No, I'll install everything myself"; exitcode=$?
+
+    if [ $exitcode -ne 0 ]; then
+        exit 120
+    fi
+
     # TODO: Untested below
     if carburator has program apt; then
         sudo apt-get -y update
@@ -45,15 +54,6 @@ fi
 if [ "$role" = 'server' ]; then
     carburator print terminal info \
         "Executing register script on a server node"
-
-    carburator prompt yes-no \
-        "Should we try to install lua on your computer?" \
-            --yes-val "Yes try to install with a script" \
-            --no-val "No, I'll install everything myself"; exitcode=$?
-
-    if [ $exitcode -ne 0 ]; then
-        exit 120
-    fi
 
     # TODO: Untested below
     if carburator has program apt; then
