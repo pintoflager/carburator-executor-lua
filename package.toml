@@ -3,5 +3,6 @@ version = "0.1.0"
 collection = "Executor"
 platforms = ["Client", "Server"]
 
+file_ext = "lua"
 retry_times = 3
 retry_interval = 10
