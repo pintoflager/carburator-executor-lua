@@ -4,16 +4,16 @@ role="$1"
 
 # If lua is present don't bother with the install
 if ! carburator has program lua; then
-    carburator print terminal warn \
+    carburator log warn \
         "Missing required program lua. Trying to install with package manager..."
 else
-    carburator print terminal success "Lua found from the $role node."
+    carburator log success "Lua found from the $role node."
     exit 0
 fi
 
 # App installation tasks on a client node. Runs first, runs as normal user.
 if [ "$role" = 'client' ]; then
-    carburator print terminal info \
+    carburator log info \
         "Executing register script on a client node"
 
     carburator prompt yes-no \
@@ -44,7 +44,7 @@ if [ "$role" = 'client' ]; then
         sudo dnf -y install lua
 
     else
-        carburator print terminal error \
+        carburator log error \
             "Unable to detect package manager from localhost OS"
         exit 120
     fi    
@@ -52,7 +52,7 @@ fi
 
 # App installation tasks on remote server node. Runs as root.
 if [ "$role" = 'server' ]; then
-    carburator print terminal info \
+    carburator log info \
         "Executing register script on a server node"
 
     # TODO: Untested below
@@ -74,7 +74,7 @@ if [ "$role" = 'server' ]; then
         dnf -y install lua
 
     else
-        carburator print terminal error \
+        carburator log error \
             "Unable to detect package manager from server node linux"
         exit 120
     fi
